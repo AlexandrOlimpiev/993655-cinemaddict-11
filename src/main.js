@@ -117,7 +117,7 @@ for (let i = 0; i < FILM_LIST_LENGTH; i++) {
 
 render(filmList, creatShowMoreTemplate());
 
-const filmExtraListContainer = Array.from(siteMainElement.querySelectorAll(`.films-list--extra .films-list__container`));
+const filmExtraListContainer = siteMainElement.querySelectorAll(`.films-list--extra .films-list__container`);
 filmExtraListContainer.forEach((item) => {
   for (let i = 0; i < FILM_EXTRA_LIST_LENGTH; i++) {
     render(item, creatFilmCardTemplate());
