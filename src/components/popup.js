@@ -1,3 +1,7 @@
+import {
+  NAME_MONTH
+} from "../const.js";
+
 const createCommentMarkup = (comment) => {
   const {
     emojis,
@@ -41,8 +45,7 @@ export const creatPopupTemplate = (film) => {
     country
   } = film;
 
-  const nameMonth = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
-  const fullReleaseDate = `${releaseDate.getDate()} ${nameMonth[releaseDate.getMonth()]} ${releaseDate.getFullYear()}`;
+  const fullReleaseDate = `${releaseDate.getDate()} ${NAME_MONTH[releaseDate.getMonth()]} ${releaseDate.getFullYear()}`;
   const genreMarkup = genres.map((genre) => {
     return (
       `<span class="film-details__genre">${genre}</span>`
