@@ -1,4 +1,8 @@
 import {
+  createElement
+} from "../utils.js";
+
+import {
   NAME_MONTH
 } from "../const.js";
 
@@ -27,7 +31,7 @@ const createCommentMarkup = (comment) => {
   </li>`);
 };
 
-export const creatPopupTemplate = (film) => {
+const creatPopupTemplate = (film) => {
   const {
     title,
     poster,
@@ -180,3 +184,26 @@ export const creatPopupTemplate = (film) => {
     </section>`
   );
 };
+
+export default class Popup {
+  constructor(film) {
+    this._film = film;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return creatPopupTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
