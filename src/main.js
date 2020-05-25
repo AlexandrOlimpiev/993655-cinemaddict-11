@@ -52,11 +52,25 @@ const renderFilmCard = (filmsListContainer, film) => {
 const renderFilmPopup = (film) => {
   const popupComponent = new PopupComponent(film);
   const popupContainer = document.querySelector(`body`);
-  popupContainer.appendChild(popupComponent.getElement());
 
-  popupComponent.getElement().querySelector(`.film-details__close-btn`).addEventListener(`click`, () => {
+  // Функция удаления попапа
+  const deletePopup = () => {
     popupContainer.removeChild(popupComponent.getElement());
-  });
+  };
+
+  // Обработчик нажатия кнопки Escape
+  const EscKeyDownHandler = (evt) => {
+    const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
+
+    if (isEscKey) {
+      deletePopup();
+      document.removeEventListener(`keydown`, EscKeyDownHandler);
+    }
+  };
+
+  popupContainer.appendChild(popupComponent.getElement());
+  popupComponent.getElement().querySelector(`.film-details__close-btn`).addEventListener(`click`, deletePopup);
+  document.addEventListener(`keydown`, EscKeyDownHandler);
 };
 
 // Функция отрисовки основного списка фильмов
